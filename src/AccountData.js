@@ -1,5 +1,6 @@
 import { drizzleConnect } from 'drizzle-react'
 import React, { Component } from 'react'
+import { View, Text } from 'react-native';
 import PropTypes from 'prop-types'
 
 /*
@@ -22,7 +23,7 @@ class AccountData extends Component {
     // No accounts found.
     if(Object.keys(this.props.accounts).length === 0) {
       return (
-        <span>Initializing...</span>
+        <Text>Initializing...</Text>
       )
     }
 
@@ -42,10 +43,10 @@ class AccountData extends Component {
     }
 
     return(
-      <div>
-        <h4>{address}</h4>
-        <p>{balance} {units}</p>
-      </div>
+      <View>
+        <Text h4>{address}</Text>
+        <Text>{balance} {units}</Text>
+      </View>
     )
   }
 }

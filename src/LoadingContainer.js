@@ -1,5 +1,6 @@
 import { drizzleConnect } from 'drizzle-react'
 import React, { Children, Component } from 'react'
+import { View, Text } from 'react-native';
 import PropTypes from 'prop-types'
 
 /*
@@ -15,28 +16,20 @@ class LoadingContainer extends Component {
       }
 
       return(
-        <main className="container loading-screen">
-          <div className="pure-g">
-            <div className="pure-u-1-1">
-              <h1>⚠️</h1>
-              <p>This browser has no connection to the Ethereum network. Please use the Chrome/FireFox extension MetaMask, or dedicated Ethereum browsers Mist or Parity.</p>
-            </div>
-          </div>
-        </main>
+        <View>
+          <Text h1>⚠️</Text>
+          <Text>This browser has no connection to the Ethereum network. Please use the Chrome/FireFox extension MetaMask, or dedicated Ethereum browsers Mist or Parity.</Text>
+        </View>
       )
     }
 
     if (this.props.web3.status === 'initialized' && Object.keys(this.props.accounts).length === 0)
     {
       return(
-        <main className="container loading-screen">
-          <div className="pure-g">
-            <div className="pure-u-1-1">
-              <h1>🦊</h1>
-              <p><strong>We can't find any Ethereum accounts!</strong> Please check and make sure Metamask or you browser are pointed at the correct network and your account is unlocked.</p>
-            </div>
-          </div>
-        </main>
+        <View>
+          <Text h1>🦊</Text>
+          <Text>We can't find any Ethereum accounts! Please check and make sure Metamask or you browser are pointed at the correct network and your account is unlocked.</Text>
+        </View>
       )
     }
 
@@ -50,14 +43,10 @@ class LoadingContainer extends Component {
     }
 
     return(
-      <main className="container loading-screen">
-        <div className="pure-g">
-          <div className="pure-u-1-1">
-            <h1>⚙️</h1>
-            <p>Loading dapp...</p>
-          </div>
-        </div>
-      </main>
+      <View>
+        <Text h1>⚙️</Text>
+        <Text>Loading dapp...</Text>
+      </View>
     )
   }
 }

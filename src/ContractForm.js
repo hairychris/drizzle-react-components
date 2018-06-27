@@ -1,4 +1,5 @@
 import { drizzleConnect } from 'drizzle-react'
+import { Button, View, TextInput } from 'react-native';
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
@@ -63,15 +64,29 @@ class ContractForm extends Component {
 
   render() {
     return (
-      <form className="pure-form pure-form-stacked">
+      <View>
         {this.inputs.map((input, index) => {            
             var inputType = this.translateType(input.type)
             var inputLabel = this.props.labels ? this.props.labels[index] : input.name
             // check if input type is struct and if so loop out struct fields as well
-            return (<input key={input.name} type={inputType} name={input.name} value={this.state[input.name]} placeholder={inputLabel} onChange={this.handleInputChange} />)
+            // TODO: handle bool and uint better.
+            return (
+            	<TextInput
+            		key={input.name} 
+            		placeholder={inputLabel} 
+			        style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+			        onChangeText={this.handleInputChange}
+			        value={this.state[input.name]}
+			    />
+            )
         })}
-        <button key="submit" className="pure-button" type="button" onClick={this.handleSubmit}>Submit</button>
-      </form>
+        <Button
+		    onPress={this.handleSubmit}
+		    title="Submit"
+		    color="#841584"
+		    accessibilityLabel="Submit the contract form."
+		/>
+      </View>
     )
   }
 }

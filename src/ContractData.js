@@ -1,5 +1,6 @@
 import { drizzleConnect } from 'drizzle-react'
 import React, { Component } from 'react'
+import { View, Text } from 'react-native';
 import PropTypes from 'prop-types'
 
 /*
@@ -33,14 +34,14 @@ class ContractData extends Component {
     // Contract is not yet intialized.
     if(!this.props.contracts[this.props.contract].initialized) {
       return (
-        <span>Initializing...</span>
+        <Text>Initializing...</Text>
       )
     }
 
     // If the cache key we received earlier isn't in the store yet; the initial value is still being fetched.
     if(!(this.dataKey in this.props.contracts[this.props.contract][this.props.method])) {
       return (
-        <span>Fetching...</span>
+        <Text>Fetching...</Text>
       )
     }
 
@@ -67,13 +68,13 @@ class ContractData extends Component {
     // If return value is an array
     if (typeof displayData === 'array') {
       const displayListItems = displayData.map((datum, index) => {
-        <li key={index}>{datum}{pendingSpinner}</li>
+        <Text key={index}>{datum}{pendingSpinner}</Text>
       })
       
       return(
-        <ul>
+        <View>
           {displayListItems}
-        </ul>
+        </View>
       )
     }
 
@@ -84,24 +85,24 @@ class ContractData extends Component {
       
       Object.keys(displayData).forEach((key) => {
         if (i != key) {
-          displayObjectProps.push(<li key={i}>
-            <strong>{key}</strong>{pendingSpinner}<br/>
+          displayObjectProps.push(<Text key={i}>
+            {key} {pendingSpinner}
             {displayData[key]}
-          </li>)
+          </Text>)
         }
 
         i++
       })
       
       return(
-        <ul>
+        <View>
           {displayObjectProps}
-        </ul>
+        </View>
       )
     }
 
     return(
-      <span>{displayData}{pendingSpinner}</span>
+      <Text>{displayData}{pendingSpinner}</Text>
     )
   }
 }
